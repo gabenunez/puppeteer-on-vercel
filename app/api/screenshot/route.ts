@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
 
-// URL to the Chromium binary package hosted in /public
-const CHROMIUM_PACK_URL = `https://${process.env.VERCEL_URL}/chromium-pack.tar`;
+// URL to the Chromium binary package hosted in /public, if not in production, use a fallback URL
+// alternatively, you can host the chromium-pack.tar file elsewhere and update the URL below
+const CHROMIUM_PACK_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/chromium-pack.tar`
+  : "https://github.com/gabenunez/puppeteer-on-vercel/raw/refs/heads/main/example/chromium-dont-use-in-prod.tar";
 
 // Cache the Chromium executable path to avoid re-downloading on subsequent requests
 let cachedExecutablePath: string | null = null;
