@@ -48,6 +48,28 @@ Behind the scenes, the app:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://gabenunez/puppeteer-on-vercel)
 
+## Troubleshooting
+
+### 401 errors when fetching Chromium binary
+
+If you see 401 errors when the function tries to download `chromium-pack.tar` from your Vercel deployment, this is likely related to **Vercel Deployment Protection**. By default, all non-production deployment URLs are protected and will block requests.
+
+**Solutions:**
+- Deploy to production or disable deployment protection for preview deployments
+- Host the `chromium-pack.tar` file elsewhere (see alternative hosting below)
+
+### Alternative: Host Chromium binary elsewhere
+
+Instead of serving the Chromium binary from your own Vercel deployment, you can host it on an alternative service:
+
+1. Upload `chromium-pack.tar` to another CDN or cloud storage
+2. Update the `CHROMIUM_PACK_URL` in `/app/api/screenshot/route.ts`:
+
+```typescript
+const CHROMIUM_PACK_URL = `https://your-cdn.com/chromium-pack.tar`;
+```
+
+This approach avoids deployment protection issues and can improve download speeds.
 
 ### Timeout errors on Vercel
 
