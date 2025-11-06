@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Puppeteer on Vercel
 
-## Getting Started
+A demonstration of how to run [Puppeteer](https://pptr.dev/) on [Vercel](https://vercel.com).
 
-First, run the development server:
+## Purpose
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This repository demonstrates how to successfully deploy and run Puppeteer on Vercel. Puppeteer is a powerful Node.js library that provides a high-level API to control headless Chrome/Chromium browsers, commonly used for:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 📸 Taking screenshots of web pages
+- 📄 Generating PDFs from web content
+- 🧪 Automated testing
+- ⚡ Performance testing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Running Puppeteer on Vercel requires special configuration due to the large size of the Chromium binary and the size constraints of functions. This project shows you exactly how to do it.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What It Does
 
-## Learn More
+This Next.js application provides a simple web interface where you can:
 
-To learn more about Next.js, take a look at the following resources:
+1. Enter any URL (e.g., `https://vercel.com`)
+2. Click "Capture" to take a screenshot
+3. View the generated screenshot instantly
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Behind the scenes, the app:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Uses **regular Puppeteer** with bundled Chromium for local development
+- Uses **`@sparticuz/chromium-min`** with a pre-packaged Chromium binary for Vercel deployment
+- Automatically caches the Chromium executable path to improve cold start performance
+- Handles URL validation and error management
+
+## How It Works
+
+### Local Development
+
+- Uses `puppeteer` package with its bundled Chromium binary
+- Works out of the box with no special configuration
+
+### Vercel Deployment
+
+1. **Build Time**: The `postinstall` script extracts Chromium binaries from `@sparticuz/chromium` and packages them into `public/chromium-pack.tar`
+2. **Runtime**: The API route uses `@sparticuz/chromium-min` to download and extract the Chromium binary from the hosted tar file
+3. **Caching**: The executable path is cached in memory to avoid re-downloading on subsequent requests
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://gabenunez/puppeteer-on-vercel)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Timeout errors on Vercel
+
+Note that Vercel functions have a 10-second timeout on the Hobby plan. If screenshots are taking too long, consider upgrading to Pro for higher limits.
