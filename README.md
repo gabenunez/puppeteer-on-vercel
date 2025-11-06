@@ -2,7 +2,7 @@
 
 A demonstration of how to run [Puppeteer](https://pptr.dev/) on [Vercel](https://vercel.com).
 
-<img width="1546" height="874" alt="CleanShot 2025-11-06 at 09 38 43@2x" src="https://github.com/user-attachments/assets/e94645f2-9095-414d-8032-410182ae6543" />
+<img width="1546" height="874" alt="Puppeteer on Vercel" src="https://github.com/user-attachments/assets/e94645f2-9095-414d-8032-410182ae6543" />
 
 
 ## Purpose
@@ -46,7 +46,7 @@ Behind the scenes, the app:
 
 ## Deploy on Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://gabenunez/puppeteer-on-vercel)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/gabenunez/puppeteer-on-vercel)
 
 ## Troubleshooting
 
