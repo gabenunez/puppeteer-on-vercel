@@ -4,6 +4,9 @@ A demonstration of how to run [Puppeteer](https://pptr.dev/) on [Vercel](https:/
 
 <img width="1546" height="874" alt="Puppeteer on Vercel" src="https://github.com/user-attachments/assets/e94645f2-9095-414d-8032-410182ae6543" />
 
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/gabenunez/puppeteer-on-vercel)
 
 ## Purpose
 
@@ -43,10 +46,6 @@ Behind the scenes, the app:
 1. **Build Time**: The `postinstall` script extracts Chromium binaries from `@sparticuz/chromium` and packages them into `public/chromium-pack.tar`
 2. **Runtime**: The API route uses `@sparticuz/chromium-min` to download and extract the Chromium binary from the hosted tar file
 3. **Caching**: The executable path is cached in memory to avoid re-downloading on subsequent requests
-
-## Deploy on Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/gabenunez/puppeteer-on-vercel)
 
 ## Troubleshooting
 
