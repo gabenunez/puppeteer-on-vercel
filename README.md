@@ -33,6 +33,7 @@ Behind the scenes, the app:
 - Uses **`@sparticuz/chromium-min`** with a pre-packaged Chromium binary for Vercel deployment
 - Automatically caches the Chromium executable path to improve cold start performance
 - Handles URL validation and error management
+- Defaults to the provided example Chromium .tar file if no production deployment is found to allow you to use the application without a publically accessible version.
 
 ## How It Works
 
@@ -48,27 +49,6 @@ Behind the scenes, the app:
 3. **Caching**: The executable path is cached in memory to avoid re-downloading on subsequent requests
 
 ## Troubleshooting
-
-### 401 errors when fetching Chromium binary
-
-If you see 401 errors when the function tries to download `chromium-pack.tar` from your Vercel deployment, this is likely related to **Vercel Deployment Protection**. By default, all non-production deployment URLs are protected and will block requests.
-
-**Solutions:**
-- Deploy to production or disable deployment protection for preview deployments
-- Host the `chromium-pack.tar` file elsewhere (see alternative hosting below)
-
-### Alternative: Host Chromium binary elsewhere
-
-Instead of serving the Chromium binary from your own Vercel deployment, you can host it on an alternative service:
-
-1. Upload `chromium-pack.tar` to another CDN or cloud storage
-2. Update the `CHROMIUM_PACK_URL` in `/app/api/screenshot/route.ts`:
-
-```typescript
-const CHROMIUM_PACK_URL = `https://your-cdn.com/chromium-pack.tar`;
-```
-
-This approach avoids deployment protection issues and can improve download speeds.
 
 ### Timeout errors on Vercel
 
