@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // URL to the Chromium binary package hosted in /public
-const CHROMIUM_PACK_URL = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/chromium-pack.tar`;
+const CHROMIUM_PACK_URL = `https://${process.env.VERCEL_URL}/chromium-pack.tar`;
 
 // Cache the Chromium executable path to avoid re-downloading on subsequent requests
 let cachedExecutablePath: string | null = null;
