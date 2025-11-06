@@ -2,6 +2,9 @@
 
 A demonstration of how to run [Puppeteer](https://pptr.dev/) on [Vercel](https://vercel.com).
 
+<img width="1546" height="874" alt="CleanShot 2025-11-06 at 09 38 43@2x" src="https://github.com/user-attachments/assets/e94645f2-9095-414d-8032-410182ae6543" />
+
+
 ## Purpose
 
 This repository demonstrates how to successfully deploy and run Puppeteer on Vercel. Puppeteer is a powerful Node.js library that provides a high-level API to control headless Chrome/Chromium browsers, commonly used for:
