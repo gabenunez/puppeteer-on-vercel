@@ -36,7 +36,7 @@ async function main() {
     console.log("   Output:", outputPath);
 
     // Tar the contents of bin/ directly (without bin prefix)
-    execSync(`tar -cf "${outputPath}" -C "${binDir}" .`, {
+    execSync(`mkdir -p ${publicDir} && tar -cf "${outputPath}" -C "${binDir}" .`, {
       stdio: "inherit",
       cwd: projectRoot,
     });
