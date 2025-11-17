@@ -33,6 +33,11 @@ export default function HomePage() {
         `/api/screenshot?url=${encodeURIComponent(url)}`
       );
       if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error(
+            "Rate limit reached. To ensure this example can be used by others, please try again later."
+          );
+        }
         throw new Error("Failed to capture screenshot.");
       }
       const blob = await response.blob();
